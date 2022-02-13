@@ -10,7 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_13_111211) do
+ActiveRecord::Schema.define(version: 2022_02_13_114827) do
+
+  create_table "cart_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "customer_id", null: false
+    t.integer "quantity", null: false
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "customers", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -36,6 +44,15 @@ ActiveRecord::Schema.define(version: 2022_02_13_111211) do
     t.text "explanation"
     t.integer "tax_out_price"
     t.string "image"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "order_items", force: :cascade do |t|
+    t.integer "item_id", null: false
+    t.integer "order_id", null: false
+    t.integer "quantity", null: false
+    t.integer "subprice", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
