@@ -53,7 +53,6 @@ Rails.application.configure do
   # Highlight code that triggered database queries in logs.
   config.active_record.verbose_query_logs = true
 
-  config.hosts << "ecbebdea02a3493f9907fe536f8704f8.vfs.cloud9.us-east-1.amazonaws.com"
 
   # Debug mode disables concatenation and preprocessing of assets.
   # This option may cause significant delays in view rendering with a large
@@ -76,6 +75,6 @@ Rails.application.configure do
   # Uncomment if you wish to allow Action Cable access from any origin.
   # config.action_cable.disable_request_forgery_protection = true
 
-  config.hosts << "c9ecaea3cbbb4cb79b50e128418f157c.vfs.cloud9.us-east-1.amazonaws.com"
+  config.hosts.clear
 
 end
