@@ -1,7 +1,24 @@
 Rails.application.routes.draw do
 
   root to: 'customer/homes#top'
+<<<<<<< HEAD
   get '/about' => 'public/homes#about'
+=======
+   get '/about' => 'customer/homes#about'
+
+  devise_for :admin, skip: [:registrations, :passwords],controllers: {
+    sessions: "admin/sessions"
+  }
+
+  devise_for :customers, skip: [:passwords],  controllers: {
+    registrations: "customer/registrations",
+    sessions: 'customer/sessions'
+  }
+
+  namespace :customer do
+    # get 'homes/about'
+  end
+>>>>>>> 981a7d4f2c7cc7b26f23324184658a93d40e54f9
 
   namespace :customer do
     get 'orders/new'
