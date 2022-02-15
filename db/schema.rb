@@ -40,11 +40,11 @@ ActiveRecord::Schema.define(version: 2022_02_14_020628) do
     t.datetime "remember_created_at"
     t.string "family_name", null: false
     t.string "first_name", null: false
-    t.string "kana_family_name", null: false
-    t.string "kana_first_name", null: false
+    t.string "kana_family", null: false
+    t.string "kana_first", null: false
     t.integer "postal_code", null: false
     t.string "address", null: false
-    t.integer "tel", null: false
+    t.integer "tell", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["email"], name: "index_customers_on_email", unique: true
@@ -52,10 +52,10 @@ ActiveRecord::Schema.define(version: 2022_02_14_020628) do
   end
 
   create_table "items", force: :cascade do |t|
-    t.string "name", null: false
-    t.text "explanation", null: false
-    t.integer "tax_out_price", null: false
-    t.string "image_id", null: false
+    t.string "name"
+    t.text "explanation"
+    t.integer "tax_out_price"
+    t.string "image"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
@@ -70,13 +70,13 @@ ActiveRecord::Schema.define(version: 2022_02_14_020628) do
   end
 
   create_table "orders", force: :cascade do |t|
-    t.integer "customer_id", null: false
-    t.integer "postage", null: false
-    t.integer "total_payment", null: false
-    t.integer "payment_method", null: false
-    t.string "name", null: false
-    t.string "address", null: false
-    t.string "postal_code", null: false
+    t.integer "customer_id"
+    t.string "postage"
+    t.string "invoice"
+    t.string "payment"
+    t.string "name"
+    t.string "address"
+    t.string "postal_code"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
