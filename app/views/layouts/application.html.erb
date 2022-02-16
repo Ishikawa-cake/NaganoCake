@@ -21,32 +21,42 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-            <%# if user_signed_in? %>
+
+            <% if customer_signed_in? %>
             <li class="nav-item">
-              <%#= link_to "ログアウト", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
+              <%#= link_to 'マイページ', customer_path(current_customer), class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%#= link_to '投稿フォーム', new_post_image_path, class: 'nav-link text-dark' %>
+              <%#= link_to '商品一覧', new_post_image_path, class: 'nav-link text-dark' %>
             </li>
             <li class="nav-item">
-              <%#= link_to 'マイページ', user_path(current_user.id), class: 'nav-link text-dark' %>
+              <%#= link_to "カート", destroy_user_session_path, method: :delete, class: 'nav-link text-dark' %>
             </li>
-            <%# else %>
+            <li class="nav-item">
+              <%= link_to "ログアウト", destroy_customer_session_path, method: :delete, class: "btn btn-outline-secondary btn-sm" %>
+            </li>
+
+            <% else %>
+
             <li class="nav-item">
               <%= link_to "About", about_path, class: "btn btn-outline-secondary btn-sm" %>
             </li>
-            
             <li class="nav-item">
-               <%= link_to "Sign Up", new_customer_registration_path, class: "btn btn-outline-secondary btn-sm" %>
+              <%#= link_to '商品一覧', new_post_image_path, class: 'nav-link text-dark' %>
             </li>
+            <li class="nav-item">
+               <%= link_to "新規登録", new_customer_registration_path, class: "btn btn-outline-secondary btn-sm" %>
             </li>
-            <%# end %>
+            <li class="nav-item">
+              <%= link_to "ログイン", new_customer_session_path, class: "btn btn-outline-secondary btn-sm" %>
+            </li>
+            <% end %>
             </ul>
           </div>
         </div>
       </nav>
     </header>
-    
+
   <main class="mb-auto">
   <%= yield %>
   </main>
@@ -56,7 +66,7 @@
       <div class="row no-gutters">
         <div class="col-md-4">
           <p>黙ってケーキくえアホンダラ</p>
-              
+
         </div>
           <div class="col-md-8">
           <h6 class="text-white mt-2 mb-3">Link</h6>
@@ -75,4 +85,3 @@
 </body>
 
 
-  
