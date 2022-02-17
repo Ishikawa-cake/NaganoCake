@@ -1,2 +1,34 @@
-<h1>Admin::Items#show</h1>
-<p>Find me in app/views/admin/items/show.html.erb</p>
+<div class= "container">
+  <div class= "row">
+    <div class= "col-3 d-flex align-items-center justify-content-center">
+      <%= attachment_image_tag(@item, :item_image, size: '320x240') %>
+    </div>
+    <div class= "col-9">
+      <table class='table table-borderless'>
+        <tbody>
+          <tr>
+            <td style="width: 150px;">商品名</td>
+            <td><%= @item.name %></td>
+          </tr>
+          <tr>
+            <td>商品説明</td>
+            <td><%= @item.explanation %></td>
+          </tr>
+          <tr>
+            <td>税込価格<br>(税抜価格)</td>
+            <td class="d-inline-flex align-items-center">
+              <p class="lead"><%= @item.add_tax_sales_price.to_s(:delimited)%>（<%= @item.tax_out_price.to_s(:delimited) %>）</p>
+              <p>円</p>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-6 offset-3">
+      <div class= "mx-5 px-5 my-3">
+        <%= link_to "編集する", admin_items_edit_path(@item), class: "btn btn-lg btn-success" %></div>
+    </div>
+  </div>
+</div>
