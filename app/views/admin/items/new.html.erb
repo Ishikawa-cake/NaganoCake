@@ -1,3 +1,4 @@
+
 <h1>Admin::Items#new</h1>
 <p>Find me in app/views/admin/items/new.html.erb</p>
 
@@ -29,3 +30,13 @@
             <%= f.submit '新規登録' %>
           
           <% end %>
+
+<div class= "container">
+  <div class= "row">
+    <div>商品新規登録</div>
+    <div class= "col-6 offset-3">
+      <%= render 'admin/items/form', item: @item %>
+    </div>
+    <div><%#= link_to '新規登録' admin_items_show_path(@item.id), class: "btn btn-lg btn-success" %></div>
+  </div>
+</div>

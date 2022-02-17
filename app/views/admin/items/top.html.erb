@@ -1,2 +1,32 @@
-<h1>Admin::Items#top</h1>
-<p>Find me in app/views/admin/items/top.html.erb</p>
+<div class= "container">
+  <div class= "row">
+    <div class= "col-10 offset-col-2">
+      <div class='text-right py-3'>
+        <%= link_to admin_items_new_path do %>
+          <button type="button" class="btn btn-primary rounded-circle p-0" style="width:3rem; height:3rem;">＋</button>
+        <% end %>
+      </div>
+      <table class='table table-hover table-inverse table-borderless'>
+        <thead class="table-secondary">
+          <tr>
+            <th class="text-center" style="width: 15%;">商品ID</th>
+            <th class="text-center" style="width: 40%;">商品名</th>
+            <th class="text-center" style="width: 15%;">税抜価格</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @items.each do |item| %>
+            <tr>
+              <td class="text-center"><%= item.id %></td>
+              <td class="text-left">
+                <%= link_to item.name, admin_items_show_path(item), class: "item_#{item.id}" %>
+              </td>
+              <td class="text-center"><%= item.tax_out_price.to_s(:delimited) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+      <div class="py-2 d-flex align-items-center justify-content-center"><%= paginate @items %></div>
+    </div>
+  </div>
+</div>
