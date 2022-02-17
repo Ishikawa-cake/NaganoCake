@@ -1,8 +1,10 @@
 class Admin::ItemsController < ApplicationController
-  def index
+  def index 
+    @items = Item.page(params[:id])
   end
 
   def new
+    @item = Item.new
   end
 
   def edit

@@ -65,12 +65,6 @@ class Customer::RegistrationsController < Devise::RegistrationsController
 
   def after_sign_in_path_for(resource)
     about_path(resource)
-<<<<<<< HEAD
-  end
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :kana_family_name,:kana_first_name, :postal_code, :address, :tel, ])
-=======
   end
 
   def after_sign_out_path_for(resource)
@@ -79,7 +73,6 @@ class Customer::RegistrationsController < Devise::RegistrationsController
 
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:family_name, :first_name, :kana_family_name, :kana_first_name, :postal_code, :address, :tel])
->>>>>>> origin/develop
   end
 
 end

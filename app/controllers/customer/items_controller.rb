@@ -6,6 +6,7 @@ class Customer::ItemsController < ApplicationController
   end
 
   def index
+    @item = Item.find(params[:id])
   end
 
   def show
