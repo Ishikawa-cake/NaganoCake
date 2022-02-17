@@ -7,8 +7,11 @@ class Customer::ItemsController < ApplicationController
 
   
   def index
+
+    @item = Item.find(params[:id])
     @items = Item.all
     
+
   end
 
   def show
