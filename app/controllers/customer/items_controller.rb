@@ -1,10 +1,8 @@
 class Customer::ItemsController < ApplicationController
-  def top
-  end
-  
+
   def index
     @items = Item.all
-    
+
 
   end
 
@@ -13,5 +11,12 @@ class Customer::ItemsController < ApplicationController
     #カートに追加するため
     @cart_items = CartItem.new
   end
-  
+
+
+  private
+
+  def item_params
+    params.require(:item).permit(:name, :explanation, :tax_out_price, :image)
+  end
+
 end
