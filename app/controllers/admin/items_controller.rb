@@ -6,12 +6,27 @@ class Admin::ItemsController < ApplicationController
   def new
     @item = Item.new
   end
-  
 
   def edit
   end
 
   def show
+    @item = Item.find(params[:id])
+  end
+
+  def top
+    @items = Item.all.page(params[:page]).per(20)
+    @item = Item.find(params)
+  end
+
+
+  def update
+    @item = Item.find(params)
+    if @item.update(item_params)
+      redirect_to admin_items_index_path(@item)
+    else
+      render :edit
+    end
   end
 
   def create
