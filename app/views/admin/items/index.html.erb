@@ -48,6 +48,11 @@
         <tbody>
           <% @items.each do |item| %>
             <tr>
+             
+            
+              
+             
+              
               <td class="text-center"><%= item.id %></td>
               <td class="text-left">
                 <%= link_to item.name, admin_items_show_path(item), class: "item_#{item.id}" %>
