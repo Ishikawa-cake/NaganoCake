@@ -1,18 +1,13 @@
 class Admin::ItemsController < ApplicationController
-
   def index
-    @items = Item.page(params[:id])
+    @items = Item.all
   end
 
   def new
     @item = Item.new
   end
 
-
-
-
   def edit
-    @item = Item.find(params[:id])
   end
 
   def show
@@ -34,15 +29,17 @@ class Admin::ItemsController < ApplicationController
     end
   end
 
-  def destroy
-    @item = Item.find(params)
-    @item.destroy
-    redirect_to admin_items_index_path
+  def create
+    @item = Item.new(item_params)
+    @item.save
+    redirect_to admin_item_path(@item)
   end
 
-  private
+private 
+ 
+ 
   def item_params
-    params.require(:item).permit(:name, :explanation, :image_id, :tax_out_price)
+    params.require(:item).permit(:name, :explanation, :tax_out_price, :image_id )
   end
 
 end
