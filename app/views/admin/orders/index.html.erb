@@ -19,9 +19,9 @@
                 <%= order.created_at %>
               <% end %>
             </td>
-            <td><%#= order.customer.family_name %><%#= order.customer.first_name %></td>
-            <td><%#= order.order_items.all.sum %></td>
-            <td><%#= order.shipping_status %></td>
+            <td><%= order.customer.family_name %><%= order.customer.first_name %></td>
+            <td><%= order.order_items.all.sum %></td>
+            <td><%= order.shipping_status %></td>
           </tr>
 　　　　<% end %>
       </tbody>
