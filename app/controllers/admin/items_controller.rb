@@ -20,30 +20,22 @@ class Admin::ItemsController < ApplicationController
     @item = Item.find(params)
   end
 
-  def create
-    @item = Item.new(item_params)
-
-    if @item.save
-      redirect_to admin_items_path(@item)
-    else
-      render "new"
-    end
-  end
 
   def update
     @item = Item.find(params[:id])
     if @item.update(item_params)
-      redirect_to admin_items_path(@item)
+      redirect_to admin_items_path
     else
       render :edit
     end
   end
 
-  def destroy
-    @item = Item.find(params[:id])
-    @item.destroy
+  def create
+    @item = Item.new(item_params)
+    @item.save
     redirect_to admin_items_path
   end
+
 
 private
 
