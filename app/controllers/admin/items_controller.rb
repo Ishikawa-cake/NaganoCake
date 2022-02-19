@@ -43,19 +43,11 @@ class Admin::ItemsController < ApplicationController
     redirect_to admin_items_path
   end
 
-<<<<<<< HEAD
 private
 
 
   def item_params
     params.require(:item).permit(:name, :explanation, :tax_out_price, :image )
-=======
-
-private
-
-  def item_params
-    params.require(:item).permit(:name, :explanation, :tax_out_price, :image)
->>>>>>> origin/develop
   end
 
 end
