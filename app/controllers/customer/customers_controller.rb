@@ -1,11 +1,10 @@
 class Customer::CustomersController < ApplicationController
   def edit
-    #@customer = Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
   def show
-    @customers = Customer.all
-    # @customer = Customer.find(params[:id])
+    @customer = Customer.find(params[:id])
   end
 
 
