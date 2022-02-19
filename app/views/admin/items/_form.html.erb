@@ -1,4 +1,4 @@
-<%= form_with(model: [ :admin, item], local:true) do |f| %>
+<%= form_with(model:[:admin, item], local:true) do |f| %>
 
   <table>
     <tr>
@@ -19,7 +19,7 @@
     </tr>
    </table>
   <div class="form-group mx-auto" style="width: 100px;">
-    <%= f.submit class: 'btn btn-success' %>
+    <%= f.submit  class: 'btn btn-success' %>
   </div>
 
 <% end %>
