@@ -6,11 +6,14 @@ class Customer::OrdersController < ApplicationController
   end
 
   def index
+    @orders = Order.all
   end
 
   def thanx
   end
 
   def show
+    @order = Order.find(params[:id])
   end
+
 end

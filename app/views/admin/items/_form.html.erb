@@ -1,13 +1,13 @@
-<%= form_with(model:@admin, url:@items_top_path, local:true) do |f| %>
+<%= form_with(model: [ :admin, item], local:true) do |f| %>
 
   <table>
     <tr>
-      <td class="py-3" style="width: 120px;"><%= f.label :item_image, "商品画像" %></td>
-      <td><%#= f.attachment_field :item_image, class: "form-control-file" %></td>
+      <td class="py-3" style="width: 120px;"><%= f.label :image, "商品画像" %></td>
+      <td><%= f.file_field :image, accept: "image/*", class: "form-control-file" %></td>
     </tr>
     <tr>
       <td class="py-3"><%= f.label :name, "商品名" %></td>
-      <td><%#= f.text_field :name, placeholder: "商品名", class: "form-control" %></td>
+      <td><%= f.text_field :name, placeholder: "商品名", class: "form-control" %></td>
     </tr>
     <tr>
       <td class="py-3"><%= f.label :explanation, "商品説明" %></td>
