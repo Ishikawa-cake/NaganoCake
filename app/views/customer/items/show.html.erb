@@ -7,10 +7,10 @@
             </td>
           </tr>
           <tr>
-            <td class="item.intro"><%= @item.introduction %></td>
+            <td class="item.intro"><%= @item.explanation %></td>
           </tr>
           <tr>
-            <td><strong>¥ <%= @item.add_tax_price.to_s(:delimited) %></strong> (税込)</td>
+            <td><strong>¥ <%= @item.tax_out_price.to_s(:delimited) %></strong> (税込)</td>
           </tr>
           <tr>
             <td>

@@ -40,7 +40,7 @@ private
  
  
   def item_params
-    params.require(:item).permit(:name, :explanation, :tax_out_price, :image)
+    params.require(:item).permit(:image, :name, :explanation, :tax_out_price)
   end
 
 end

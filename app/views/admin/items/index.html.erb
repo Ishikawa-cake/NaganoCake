@@ -20,7 +20,7 @@
           <div class="item_text">
           <p class="item_name">商品名：<%= item.name %></p>
           <p class="item_name">金額：¥<%= item.tax_out_price.round.to_s(:delimited) %>(税込)<br>
-          <%= link_to "商品詳細" ,item_path(item),class:'btn btn-signup  mt-4' %></p>
+          <%= link_to "商品詳細" ,admin_item_path(item),class:'btn btn-signup  mt-4' %></p>
           </div>
         </li>
         </ul>
@@ -48,6 +48,11 @@
         <tbody>
           <% @items.each do |item| %>
             <tr>
+
+
+
+
+
               <td class="text-center"><%= item.id %></td>
               <td class="text-left">
                 <%= link_to item.name, admin_item_path(item), class: "item_#{item.id}" %>
