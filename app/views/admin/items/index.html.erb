@@ -16,10 +16,10 @@
         <ul>
         <hr class="cp_hr01" />
         <li class="item_icon">
-          <%= attachment_image_tag item, :image,class:'item_photo' %>
+          <%= image_tag item.image, class:'item_photo' %>
           <div class="item_text">
           <p class="item_name">商品名：<%= item.name %></p>
-          <p class="item_name">金額：¥<%= item.price.round.to_s(:delimited) %>(税込)<br>
+          <p class="item_name">金額：¥<%= item.tax_out_price.round.to_s(:delimited) %>(税込)<br>
           <%= link_to "商品詳細" ,item_path(item),class:'btn btn-signup  mt-4' %></p>
           </div>
         </li>
@@ -50,7 +50,7 @@
             <tr>
               <td class="text-center"><%= item.id %></td>
               <td class="text-left">
-                <%= link_to item.name, admin_items_show_path(item), class: "item_#{item.id}" %>
+                <%= link_to item.name, admin_items_path(item), class: "item_#{item.id}" %>
               </td>
               <td class="text-center"><%= item.tax_out_price.to_s(:delimited) %></td>
             </tr>
