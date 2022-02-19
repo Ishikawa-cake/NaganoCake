@@ -28,11 +28,11 @@ class Admin::SessionsController < Devise::SessionsController
   protected
 
   def after_sign_in_path_for(resource)
-     about_path
+    about_path
   end
 
   def configure_permitted_parameters
-     devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
+    devise_parameter_sanitizer.permit(:sign_in, keys: [:email, :password])
   end
 
 end

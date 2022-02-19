@@ -1,7 +1,7 @@
 <div class= "container">
   <div class= "row">
     <div class= "col-3 d-flex align-items-center justify-content-center">
-      <%= image_tag, item.image, size: '320x240') %>
+      <%= image_tag @item.image, size: '300x250' %>
     </div>
     <div class= "col-9">
       <table class='table table-borderless'>
@@ -17,7 +17,7 @@
           <tr>
             <td>税込価格<br>(税抜価格)</td>
             <td class="d-inline-flex align-items-center">
-              <p class="lead"><%= @item.add_tax_sales_price.to_s(:delimited)%>（<%= @item.tax_out_price.to_s(:delimited) %>）</p>
+              <p class="lead"><%= @item.tax_out_price.to_s(:delimited)%>（<%= @item.tax_out_price.to_s(:delimited) %>）</p>
               <p>円</p>
             </td>
           </tr>
