@@ -36,6 +36,7 @@
                   </div>
                 </td>
               <% end %>
+              
               <td><%= x.quantity.to_s(:delimited)  %></td>
               <%= form_with(model: @cart_item, url: customer_cart_items_path(x.id), method: :delete, local:true) do |f|  %>
                 <td class="text-center">
