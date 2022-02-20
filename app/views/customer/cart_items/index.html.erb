@@ -31,7 +31,7 @@
                 </div>
               </td>
               <td clas><%= x.item.tax_out_price.to_s(:delimited) %></td>
-              <%= form_with(model: @cart_item, url: customers_cart_item_path(x.id), method: :patch, local:true) do |f|  %>
+              <%= form_with(model: @cart_item, url: customer_cart_items_path(x.id), method: :patch, local:true) do |f|  %>
                 <%= f.hidden_field :item_id, value: x.item_id %>
                 <td>
                   <div class="d-flex align-items-center justify-content-center">
@@ -41,7 +41,7 @@
                 </td>
               <% end %>
               <td><%= x.subtotal.to_s(:delimited)  %></td>
-              <%= form_with(model: @cart_item, url: customers_cart_item_path(x.id), method: :delete, local:true) do |f|  %>
+              <%= form_with(model: @cart_item, url: customer_cart_items_path(x.id), method: :delete, local:true) do |f|  %>
                 <td class="text-center">
                   <%= f.hidden_field :item_id, value: x.item_id %>
                   <%= f.submit '削除する', class: "btn btn-danger" %>
