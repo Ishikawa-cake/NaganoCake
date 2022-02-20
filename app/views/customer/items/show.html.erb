@@ -14,7 +14,9 @@
           </tr>
           <tr>
             <td>
+             
               <% if current_customer.presence %>
+                 <div class="d-inline-flex">
                 <%= form_with model: @cart_items, url: customer_cart_items_path(current_customer), local: true do |f| %>
                   <%= f.hidden_field :item_id, value: @item.id %>
                   <%#= f.hidden_field :customer_id, value: current_customer.id %>
