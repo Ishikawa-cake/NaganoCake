@@ -16,7 +16,14 @@
         <ul>
         <hr class="cp_hr01" />
         <li class="item_icon">
-          <%= image_tag item.image, class:'item_photo' %>
+          <% if item.image.attached? %>
+           <%= image_tag item.image, size: "200x200" %>
+          <% else %>
+            <%= image_tag 'no_image', size: "200x200" %>
+          <% end %>
+
+
+
           <div class="item_text">
           <p class="item_name">商品名：<%= item.name %></p>
           <p class="item_name">金額：¥<%= item.tax_out_price.round.to_s(:delimited) %>(税込)<br>
