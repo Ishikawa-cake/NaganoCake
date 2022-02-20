@@ -12,9 +12,9 @@
         <div class="col-md-3 item_list">
           <%= link_to item_path(item) do %>
             <% if item.image.attached? %>
-             <%= image_tag item.image, size: "200x200" %>
+             <%= image_tag item.image, size: "100x100" %>
             <% else %>
-              <%= image_tag 'no_image', size: "200x200" %>
+              <%= image_tag 'no_image', size: "100x100" %>
             <% end %>
           <% end %>
           <%= link_to item.name, item_path(item) %><br>
