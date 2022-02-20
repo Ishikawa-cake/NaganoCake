@@ -15,10 +15,10 @@
           <tr>
             <td>
               <% if current_customer.presence %>
-                <%= form_with model:@cart_items, local: true do |f|  %>
+                <%= form_with model: @cart_items, url: customer_cart_items_path(current_customer), local: true do |f| %>
                   <%= f.hidden_field :item_id, value: @item.id %>
-                  <%= f.hidden_field :customer_id, value: current_customer.id %>
-                  <%= f.select :amount, *[1..10] %>
+                  <%#= f.hidden_field :customer_id, value: current_customer.id %>
+                  <%= f.select :quantity, *[1..10] %>
                   <%= f.submit 'カートに入れる', class:'btn btn-success ml-3' %>
                 <% end %>
               <% end %>
