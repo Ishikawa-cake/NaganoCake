@@ -1,6 +1,7 @@
 class Customer::CartItemsController < ApplicationController
   def index
     @cart_items = CartItem.all
+    @total_price = 0
   end
 
   def create
@@ -12,7 +13,6 @@ class Customer::CartItemsController < ApplicationController
 
 
   private
-
 
   def cart_item_params
     params.require(:cart_item).permit(:item_id, :quantity)
