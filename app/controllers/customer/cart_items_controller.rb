@@ -5,6 +5,7 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def create
+    binding.pry
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.save
     redirect_to customer_cart_items_path
