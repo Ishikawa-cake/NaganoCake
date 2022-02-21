@@ -3,6 +3,11 @@
         <tbody>
           <tr>
             <td>
+              <h1><%= image_tag @item.image, size:"200x200" %></h1>
+            </td>
+          </tr>
+          <tr>
+            <td>
               <h1><%= @item.name %></h1>
               <h1> <%= image_tag @item.image, size: "200x150" %></h1>
             </td>
@@ -15,7 +20,7 @@
           </tr>
           <tr>
             <td>
-             
+
               <% if current_customer.presence %>
                  <div class="d-inline-flex">
                 <%= form_with model: @cart_items, url: cart_items_path(current_customer), local: true do |f| %>

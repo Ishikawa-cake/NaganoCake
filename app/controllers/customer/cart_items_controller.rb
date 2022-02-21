@@ -5,6 +5,7 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def create
+    binding.pry
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
     if my_cart.find_by(item_id: params[:cart_item][:item_id]).present?
@@ -38,10 +39,7 @@ class Customer::CartItemsController < ApplicationController
   end
 
 
-
-
-
-def destroy
+  def destroy
 
    #@cart_item = CartItem.find(params[:id])
     
@@ -54,7 +52,8 @@ def destroy
     end
     redirect_to request.referer
 
-end
+  end
+
 
   private
 
