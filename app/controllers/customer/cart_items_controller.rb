@@ -5,7 +5,7 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def create
-    binding.pry
+    # binding.pry
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
     if my_cart.find_by(item_id: params[:cart_item][:item_id]).present?
