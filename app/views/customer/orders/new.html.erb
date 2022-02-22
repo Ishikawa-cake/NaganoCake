@@ -1,2 +1,18 @@
-<h1>Customer::Orders#new</h1>
-<p>Find me in app/views/customer/orders/new.html.erb</p>
+<div class="container">
+  <div class="row">
+    <div class="col">
+      <h4>注文情報入力</h4>
+        <%#= form_with model: @order, url: log_orders_path, methos: :post, local true do |f| %>
+
+      <!--  <h5 style="font-weight: bold;">お届け先</h5>-->
+      <!--   <div style="margin-left: 60px;"><%#= f.label :postal_code, "郵便番号（ハイフンなし）" %>-->
+      <!--      <%#= f.text_field :postal_code, :placeholder => "0000000" %></div>-->
+            <!--<div style="margin-left: 60px;"><%#= f.label :address, "住所" %>-->
+            <!--<%#= f.text_field :address, :size=>"60x0", :placeholder => "国会議事堂" %></div>-->
+      <!--      <div style="margin-left: 60px;"><%#= f.label :name, "宛名" %>-->
+      <!--      <%#= f.text_field :name, :placeholder => "令和道子" %><div>-->
+      <!--<%# end %>-->
+      <%= link_to "kakuninn", log_orders_path %>
+    </div>
+  </div>
+</div>
