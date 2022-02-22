@@ -20,8 +20,8 @@
 
             <div style="margin-left: 30px;"><%= f.radio_button :address_number, 3 %>
             <%= f.label :address_number_3, "新しいお届け先" %></div>
-            <div style="margin-left: 60px;"><%= f.label :zip_code, "郵便番号（ハイフンなし）" %>
-            <%= f.text_field :zip_code, :placeholder => "0000000" %></div>
+            <div style="margin-left: 60px;"><%= f.label :postal_code, "郵便番号（ハイフンなし）" %>
+            <%= f.text_field :postal_code, :placeholder => "0000000" %></div>
             <div style="margin-left: 60px;"><%= f.label :address, "住所" %>
             <%= f.text_field :address, :size=>"60x0", :placeholder => "東京都渋谷区代々木神園町0-0" %></div>
             <div style="margin-left: 60px;"><%= f.label :name, "宛名" %>

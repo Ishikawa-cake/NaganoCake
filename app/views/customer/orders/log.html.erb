@@ -13,9 +13,9 @@
           <% @cart_items.each do |cart| %>
           <tr>
             <td style="padding: 15px 10px;"><%= cart.item.name %></td>
-            <td style="padding: 15px 10px;"><%= (cart.item.add_tax_sales_price).to_s(:delimited) %></td>
+            <td style="padding: 15px 10px;"><%= (cart.item.add_tax_out_price).to_s(:delimited) %></td>
             <td style="padding: 15px 10px;"><%= cart.quantity %></td>
-            <td style="padding: 15px 10px;"><%= (cart.item.add_tax_sales_price*cart.quantity).to_s(:delimited) %></td>
+            <td style="padding: 15px 10px;"><%= (cart.item.add_tax_out_price*cart.quantity).to_s(:delimited) %></td>
           </tr>
           <% end %>
         </table>
@@ -52,11 +52,11 @@
           <%= f.hidden_field :name %>
           <%= f.hidden_field :address %>
           <%= f.hidden_field :customer_id %>
-          <%= f.hidden_field :zip_code %>
+          <%= f.hidden_field :postal_code %>
           <%= f.hidden_field :delivery_fee, value: 800 %>
           <%= f.hidden_field :payment_method %>
           <%= f.hidden_field :total_price, value: @total_price %>
-          <%= f.hidden_field :address_number, value: params[:order][:address_number] %>
+          <%#= f.hidden_field :address_number, value: params[:order][:address_number] %>
           <%= f.submit "注文を確定する", class: "btn btn-success"%>
         <% end %>
         </div>
