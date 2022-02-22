@@ -55,6 +55,12 @@ class Customer::CartItemsController < ApplicationController
 
   end
 
+  def destroy_all
+    @cart_item = current_customer.cart_items
+    @cart_item.destroy_all
+    redirect_to cart_items_path
+  end
+
 
   private
 
