@@ -2,7 +2,7 @@
   <div class="row">
     <div class="col">
       <h4>注文情報入力</h4>
-        <%#= form_with model: @order, url: log_orders_path, methos: :post, local true do |f| %>
+        <%#= form_with model: @order, url: log_orders_path, local true do |f| %>
 
       <!--  <h5 style="font-weight: bold;">お届け先</h5>-->
       <!--   <div style="margin-left: 60px;"><%#= f.label :postal_code, "郵便番号（ハイフンなし）" %>-->
@@ -12,7 +12,11 @@
       <!--      <div style="margin-left: 60px;"><%#= f.label :name, "宛名" %>-->
       <!--      <%#= f.text_field :name, :placeholder => "令和道子" %><div>-->
       <!--<%# end %>-->
+      <%#= f.radio_button :select_address, 2 %>
+      <%#= f.label :select_address, "新しいお届け先" %>
       <%= link_to "kakuninn", log_orders_path %>
+      <%= f.submit '確認画面へ進む', class: "btn btn-sm btn-primary" %>
+      <% end %>
     </div>
   </div>
 </div>
