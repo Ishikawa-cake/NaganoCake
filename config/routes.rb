@@ -34,8 +34,8 @@ Rails.application.routes.draw do
     resources :order_items
     resources :orders do
        collection do
-         post :log
-         post :thanx
+         post :logs
+         get :thanx
        end
      end
 

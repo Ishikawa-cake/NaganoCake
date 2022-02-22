@@ -15,16 +15,17 @@ class Customer::OrdersController < ApplicationController
     current_customer.cart_items.each do |cart_item|
       @order_items = OrderItem.new
       @order_items.item_id = cart_item.item_id
-      @order_items.tax_out_price = cart_item.item.tax_out_price
+      #購入時価格
+      @order_items.subprice = cart_item.item.tax_out_price
       @order_items.quantity = cart_item.quantity
       @order_items.order_id = @order.id
       @order_items.save
     end
-    currnt_customer.cart_items.destroy_all
+    current_customer.cart_items.destroy_all
     redirect_to thanx_orders_path
   end
 
-  def log
+  def logs
     @cart_items = CartItem.all
     @customer = current_customer
     @total_payment = 0
@@ -33,18 +34,42 @@ class Customer::OrdersController < ApplicationController
     end
 
     @order = Order.new(order_params)
+    @postage = 600
+    @order.total_payment = @total_payment + 600
 
+    if params[:order][:address_number] == "1"
+      @order.name = current_customer.family_name + current_customer.first_name
+      @order.address = current_customer.address
+      @order.postal_code = current_customer.postal_code
+    elsif params[:order][:address_number] == "2"
+      @address = Address.find(params[:order][:customer_id])
+      @order.name = @address.name
+      @order.address = @address.address
+      @order.postal_code
+    else params[:order][:select_address] = "3"
+      @order.name = params[:order][:name]
+      @order.address = params[:order][:address]
+      @order.postal_code = params[:order][:postal_code]
+    end
   end
 
   def index
-    @orders = Order.where(customer_id: current_customer.id)
-  end
-
-  def thanx
+    @orders = Order.order(created_at: :desc).page(params[:page]).per(8)
+    # @orders = Order.all
+    @order = current_customer
   end
 
   def show
     @order = Order.find(params[:id])
+    @order_items = @order.order_items
+    @postage = 600
+    @total_payment = 0
+    @order_items.each do |order_items|
+      @total_payment += ((order_items.item.subprice*order_items.quantity)*1.1).floor
+    end
+  end
+
+  def thanx
   end
 
 
