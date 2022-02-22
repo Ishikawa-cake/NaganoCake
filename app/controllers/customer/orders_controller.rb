@@ -15,6 +15,7 @@ class Customer::OrdersController < ApplicationController
     current_customer.cart_items.each do |cart_item|
       @order_items = OrderItem.new
       @order_items.item_id = cart_item.item_id
+
       #購入時価格
       @order_items.subprice = cart_item.item.tax_out_price
       @order_items.quantity = cart_item.quantity
@@ -29,6 +30,7 @@ class Customer::OrdersController < ApplicationController
     @cart_items = CartItem.all
     @customer = current_customer
     @total_payment = 0
+
     @cart_items.each do |cart_item|
     @total_payment += ((cart_item.item.tax_out_price * cart_item.quantity) * 1.1).floor
     end
@@ -41,6 +43,7 @@ class Customer::OrdersController < ApplicationController
       @order.name = current_customer.family_name + current_customer.first_name
       @order.address = current_customer.address
       @order.postal_code = current_customer.postal_code
+
     elsif params[:order][:address_number] == "2"
       @address = Address.find(params[:order][:customer_id])
       @order.name = @address.name
@@ -76,6 +79,6 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :postal_code, :payment_method, :total_payment, :address)
+    params.require(:order).permit(:name, :postal_code, :payment_method, :total_payment, :address ,:customer_id)
   end
 end
