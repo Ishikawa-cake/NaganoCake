@@ -17,7 +17,7 @@ item = Item.create(name: "ラムが薫るタルト",
 item.image.attach(io: File.open(Rails.root.join('app/assets/images/taruto.jpg')),
                   filename: 'taruto.jpg')
 
-item = Item.create(name: "フランス帰りのシャフが作るカリカリマカロン",
+item = Item.create(name: "フランス帰りのシェフが作るカリカリマカロン",
                   explanation: "本場フランス仕込みの自慢のマカロンです。",
                   tax_out_price: 280)
 item.image.attach(io: File.open(Rails.root.join('./app/assets/images/makaron.jpg')),
