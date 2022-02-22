@@ -56,7 +56,14 @@ def destroy
     end
     redirect_to request.referer
 
-end
+  end
+
+  def destroy_all
+    @cart_item = current_customer.cart_items
+    @cart_item.destroy_all
+    redirect_to cart_items_path
+  end
+
 
   private
 
