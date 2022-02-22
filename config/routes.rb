@@ -38,5 +38,6 @@ Rails.application.routes.draw do
          get :thanx
        end
      end
+
   end
 end
