@@ -24,18 +24,16 @@ Rails.application.routes.draw do
   #顧客側のルートはurlにcustomerがつかない
   scope module: :customer do
     resources :customers, only: [:show, :edit, :update] do
-
-     resources :orders do
+    end
+    resources :items, only: [:index, :show]
+    resources :cart_items, only: [:index, :create, :destroy, :update]
+    resources :order_items
+    resources :orders do
        collection do
-         get :log
+         post :log
          get :thanx
        end
      end
 
-     resources :order_items
-     resources :cart_items, only: [:index, :create, :destroy, :update]
-    end
-    resources :items, only: [:index, :show]
   end
-
 end

@@ -26,8 +26,8 @@
                   <p class="lead font-weight-bold mx-4"><%= x.item.name %></p>
                 </div>
               </td>
-              <td clas><%= x.item.tax_out_price.to_s(:delimited) %></td>
-              <%= form_with(model: @cart_item, url: customer_cart_items_path(x.id), method: :patch, local:true) do |f|  %>
+              <td clas><%= (x.item.tax_out_price * 1.1).round.to_s(:delimited) %></td>
+              <%= form_with(model: @cart_item, url: cart_item_path(x.id), method: :patch, local:true) do |f|  %>
                 <%= f.hidden_field :item_id, value: x.item_id %>
                 <td>
                   <div class="d-flex align-items-center justify-content-center">
@@ -36,34 +36,35 @@
                   </div>
                 </td>
               <% end %>
-              
-              <td><%= x.quantity.to_s(:delimited)  %></td>
-              <%= form_with(model: @cart_item, url: customer_cart_items_path(x.id), method: :delete, local:true) do |f|  %>
-                <td class="text-center">
-                  <%= f.hidden_field :item_id, value: x.item_id %>
-                  <%= f.submit '削除する', class: "btn btn-danger" %>
-                </td>
-              <% end %>
+              <td>
+                <%#= x.sum(:tax_out_price).to_s(:delimited) %>
+                <%#= x.quantity.to_s(:delimited)  %>
+                <%= ((x.item.tax_out_price.to_i*1.1).floor*x.quantity).to_s(:delimited) %>
+              </td>
+              <td>
+                <%= link_to '削除する', cart_item_path(x), method: :delete,  class: "btn btn-danger" %>
+              </td>
             </tr>
-            <% @total_price +=  x.quantity %>
+            <% @total +=  x.quantity %>
           <% end %>
         </tbody>
       </table>
       <div class="mx-5 my-5 d-flex justify-content-between">
         <div class="text-left">
-          <%= link_to "お買い物を続ける", root_path, class: "btn btn-lg btn-primary mx-5" %>
+          <%= link_to "お買い物を続ける", items_path, class: "btn btn-lg btn-primary mx-5" %>
         </div>
         <% if @cart_items.present? %>
           <div class="text-right mx-5">
             <table class="table table-bordered">
               <td class="lead table-secondary">合計金額</td>
-              <td class="lead"><%= @total_price.to_s(:delimited) %></td>
+              <th><%= @total.floor.to_s(:delimited) %></th>
+              <!--<td class="lead"><%#= @total_price.to_s(:delimited) %></td>-->
             </table>
           </div>
         <% end %>
       </div>
       <div class= "d-flex justify-content-center my-5">
-        <%#= link_to "情報入力に進む", new_customers_order_path, class: "btn btn-lg btn-success" %>
+        <%= link_to "情報入力に進む", new_order_path, class: "btn btn-lg btn-success" %>
       </div>
     </div>
   </div>

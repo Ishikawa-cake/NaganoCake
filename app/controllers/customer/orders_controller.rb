@@ -1,12 +1,14 @@
 class Customer::OrdersController < ApplicationController
   def new
+    @order = Order.new
   end
 
-  def log
-  end
+
+
+
 
   def index
-    @orders = Order.all
+    @orders = Order.where(customer_id: current_customer.id)
   end
 
   def thanx
@@ -16,4 +18,10 @@ class Customer::OrdersController < ApplicationController
     @order = Order.find(params[:id])
   end
 
+
+  private
+
+  def order_params
+    params.require(:order).permit(:name, :postal_code, :payment_method, :total_payment)
+  end
 end

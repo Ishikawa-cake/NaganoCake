@@ -7,26 +7,26 @@
           <div class="form-group">
             <div class="col">購入者</div>
             <div>
-              <%#= link_to admin_customers_show(@order.customer) do %>
-                <%#= @order.customer.family_name %><%#= @order.customer.first_name %>
-              <%# end %>
+              <%= link_to admin_customers_show(@order.customer) do %>
+                <%= @order.customer.family_name %><%= @order.customer.first_name %>
+              <% end %>
             </div>
           </div>
           <div class="form-group">
              <div class="col">注文日</div>
-             <div><%#= @order.created_at.to_s %></div>
+             <div><%= @order.created_at.to_s %></div>
           </div>
           <div class="form-group">
              <div class="col">配送先</div>
-             <div><%#= @order.zip_code %><%#= @order.address %></div>
+             <div><%= @order.zip_code %><%= @order.address %></div>
           </div>
           <div class="form-group">
              <div class="col">支払方法</div>
-             <div><%#= @order.payment_method %></div>
+             <div><%= @order.payment_method %></div>
           </div>
           <div class="form-group">
              <div class="col">注文ステータス</div>
-             <div><%#= @order.shipping_status %></div>
+             <div><%= @order.shipping_status %></div>
           </div>
         </form>
 
@@ -42,24 +42,24 @@
             </tr>
           </thead>
           <tbody>
-          <%# @order.order_items.each do |order_item| %>
+          <% @order.order_items.each do |order_item| %>
               <tr>
-                <td><%#= order_item.item.name %></td>
-                <td><%#= order_item.subprice %></td>
-                <td><%#= order_item.quantity %></td>
-                <td><%#= order_item.subprice * order_item.quantity %></td>
-                <td><%#= order_item. %></td>
+                <td><%= order_item.item_name %></td>
+                <td><%= order_item.subprice %></td>
+                <td><%= order_item.quantity %></td>
+                <td><%= order_item.subprice * order_item.quantity %></td>
+                <td><%= order_item. %></td>
               </tr>
-          <%# end %>
+          <% end %>
           </tbody>
         </table>
           <div class="row">
             <div class="col">商品合計</div>
-            <div><%#= array.sum %></div>
+            <div><%= array.sum %></div>
             <div class="col">送料</div>
-            <div><%#= @order. %></div>
+            <div><%= @order. %></div>
             <div class="col">請求金額合計</div>
-            <div><%#= array.sum + @order. %></div>
+            <div><%= array.sum + @order. %></div>
           </div>
         </div>
       </div>

@@ -17,7 +17,7 @@ item = Item.create(name: "ラムが薫るタルト",
 item.image.attach(io: File.open(Rails.root.join('app/assets/images/taruto.jpg')),
                   filename: 'taruto.jpg')
 
-item = Item.create(name: "フランス帰りのシャフが作るカリカリマカロン",
+item = Item.create(name: "フランス帰りのシェフが作るカリカリマカロン",
                   explanation: "本場フランス仕込みの自慢のマカロンです。",
                   tax_out_price: 280)
 item.image.attach(io: File.open(Rails.root.join('./app/assets/images/makaron.jpg')),
@@ -46,3 +46,52 @@ item = Item.create(name: "ながのロール",
                   tax_out_price: 1300)
 item.image.attach(io: File.open(Rails.root.join('./app/assets/images/roll.jpg')),
                   filename: 'roll.jpg')
+
+
+Customer.create!(email: "tanjiro@gmail.com",
+                  password: "tanjiro",
+                  family_name: "竈門",
+                  first_name:"炭治郎",
+                  kana_family_name:"カマド",
+                  kana_first_name:"タンジロウ",
+                  postal_code:"1111111",
+                  address:"山の上",
+                  tel:"0000000000",
+                  created_at:"2022-02-20",
+                  updated_at:"2022-02-20")
+
+Customer.create!(email: "nezuko@gmail.com",
+                  password: "nezuko",
+                  family_name: "竈門",
+                  first_name:"禰豆子",
+                  kana_family_name:"カマド",
+                  kana_first_name:"ネズコ",
+                  postal_code:"2222222",
+                  address:"山の上",
+                  tel:"0000000000",
+                  created_at:"2022-02-20",
+                  updated_at:"2022-02-20")
+
+Customer.create!(email: "kyojuro@gmail.com",
+                  password: "kyojuro",
+                  family_name: "煉獄",
+                  first_name:"杏寿郎",
+                  kana_family_name:"レンゴク",
+                  kana_first_name:"キョウジュロウ",
+                  postal_code:"3333333",
+                  address:"お屋敷",
+                  tel:"0000000000",
+                  created_at:"2022-02-20",
+                  updated_at:"2022-02-20")
+
+Customer.create!(email: "muzan@gmail.com",
+                  password: "muzann",
+                  family_name: "鬼舞辻",
+                  first_name:"無惨",
+                  kana_family_name:"キブツジ",
+                  kana_first_name:"ムザン",
+                  postal_code:"9999999",
+                  address:"無限城",
+                  tel:"99999999999",
+                  created_at:"1022-02-20",
+                  updated_at:"1022-02-20")
