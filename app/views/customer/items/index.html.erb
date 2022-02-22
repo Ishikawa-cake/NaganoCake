@@ -17,8 +17,8 @@
               <%= image_tag 'no_image', size: "100x100" %>
             <% end %>
           <% end %>
-          <%= link_to item.name, item_path(item) %><br>
-          価格¥<%= (item.tax_out_price * 1.1).to_i %>
+          <p><%= link_to item.name, item_path(item) %><br></p>
+          価格¥<%= (item.tax_out_price * 1.1).round.to_i %>
         </div>
       <% end %>
     </div>
