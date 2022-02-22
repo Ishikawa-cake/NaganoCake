@@ -20,7 +20,7 @@ class Customer::OrdersController < ApplicationController
       @order_items.order_id = @order.id
       @order_items.save
     end
-    # currnt_customer.cart_items.destroy_all
+    currnt_customer.cart_items.destroy_all
     redirect_to thanx_orders_path
   end
 
@@ -29,7 +29,7 @@ class Customer::OrdersController < ApplicationController
     @customer = current_customer
     @total_payment = 0
     @cart_items.each do |cart_item|
-      @total_payment += ((cart_item.item.tax_out_price * cart_item.quantity) * 1.1).floor
+    @total_payment += ((cart_item.item.tax_out_price * cart_item.quantity) * 1.1).floor
     end
 
     @order = Order.new(order_params)
