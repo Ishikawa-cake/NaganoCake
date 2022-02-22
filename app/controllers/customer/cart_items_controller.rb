@@ -6,7 +6,6 @@ class Customer::CartItemsController < ApplicationController
   end
 
   def create
-    # binding.pry
     @cart_item = CartItem.new(cart_item_params)
     @cart_item.customer_id = current_customer.id
     if my_cart.find_by(item_id: params[:cart_item][:item_id]).present?
@@ -30,7 +29,7 @@ class Customer::CartItemsController < ApplicationController
 
   def update
     @cart_item = my_cart.find_by(id: params[:id])
-
+    
     if @cart_item.update(quantity: params[:quantity].to_i)
       flash[:notice] = 'カート内の内容が更新されました'
     else
@@ -40,12 +39,16 @@ class Customer::CartItemsController < ApplicationController
   end
 
 
-  def destroy
+
+
+
+
+def destroy
 
    #@cart_item = CartItem.find(params[:id])
-
+    
     @cart_item = my_cart.find_by(id: params[:id])
-
+    
     if @cart_item.destroy
       flash[:notice] = 'カート内の内容が削除されました'
     else
@@ -53,8 +56,7 @@ class Customer::CartItemsController < ApplicationController
     end
     redirect_to request.referer
 
-  end
-
+end
 
   private
 

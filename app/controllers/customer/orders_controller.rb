@@ -3,8 +3,9 @@ class Customer::OrdersController < ApplicationController
     @order = Order.new
   end
 
-  def log
-  end
+
+
+
 
   def index
     @orders = Order.where(customer_id: current_customer.id)

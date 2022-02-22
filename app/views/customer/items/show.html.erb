@@ -1,25 +1,6 @@
-<!--<div class="container">-->
-<!--  <div class="row">-->
-<!--    <div class="col-4">-->
-<!--      <div class="my-5">-->
-      <%#= image_tag @item.image, size: "250x250" %>
-<!--      </div>-->
-<!--      <div class="col-6">-->
-<!--        <h1><%#= @item.name %></h1>-->
-<!--        <p><%#= @item.explanation %></p>-->
-<!--      </div>-->
-<!--    </div>-->
-<!--  </div>-->
-<!--</div>-->
-
 <div class='col-auto'>
       <table class="table table-borderless">
         <tbody>
-          <!--<tr>-->
-          <!--  <td>-->
-          <!--    <h1><%#= image_tag @item.image, size:"200x200" %></h1>-->
-          <!--  </td>-->
-          <!--</tr>-->
           <tr>
             <td>
               <h1><%= @item.name %></h1>
@@ -30,11 +11,11 @@
             <td class="item.intro"><%= @item.explanation %></td>
           </tr>
           <tr>
-            <td><strong>¥ <%= (@item.tax_out_price * 1.1).round.to_s(:delimited) %></strong>(税込)</td>
+            <td><strong>¥ <%= @item.tax_out_price.to_s(:delimited) %></strong> (税込)</td>
           </tr>
           <tr>
             <td>
-
+             
               <% if current_customer.presence %>
                  <div class="d-inline-flex">
                 <%= form_with model: @cart_items, url: cart_items_path(current_customer), local: true do |f| %>
@@ -43,7 +24,6 @@
                   <%= f.select :quantity, *[1..10] %>
                   <%= f.submit 'カートに入れる', class:'btn btn-success ml-3' %>
                 <% end %>
-                  </div>
               <% end %>
             </td>
           </tr>
