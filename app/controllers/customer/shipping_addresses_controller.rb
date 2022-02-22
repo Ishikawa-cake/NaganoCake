@@ -39,7 +39,7 @@ class Customer::ShippingAddressesController < ApplicationController
   end
 
   def shipping_address_params
-    params.require(:shipping_address).permit(:name, :zip_code, :address).merge(customer_id: current_customer.id)
+    params.require(:shipping_address).permit(:name, :postal_code, :address).merge(customer_id: current_customer.id)
   end
 
 

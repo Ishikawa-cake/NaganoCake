@@ -15,25 +15,35 @@ class Customer::OrdersController < ApplicationController
     current_customer.cart_items.each do |cart_item|
       @order_items = OrderItem.new
       @order_items.item_id = cart_item.item_id
-      @order_items.tax_out_price = cart_item.item.tax_out_price
+      @order_items.subprice = cart_item.item.tax_out_price
       @order_items.quantity = cart_item.quantity
       @order_items.order_id = @order.id
       @order_items.save
     end
-    currnt_customer.cart_items.destroy_all
+    current_customer.cart_items.destroy_all
     redirect_to thanx_orders_path
   end
 
-  def log
+  def logs
     @cart_items = CartItem.all
     @customer = current_customer
     @total_payment = 0
+
     @cart_items.each do |cart_item|
     @total_payment += ((cart_item.item.tax_out_price * cart_item.quantity) * 1.1).floor
     end
 
     @order = Order.new(order_params)
-
+    if params[:order][:address_number] == "1"
+      @order.name = current_customer.family_name + current_customer.first_name
+      @order.address = current_customer.address
+      @order.postal_code = current_customer.postal_code
+    elsif params[:order][:address_number] == "3"
+      @order.postal_code = params[:order][:postal_code]
+      @order.address = params[:order][:address]
+      @order.name = params[:order][:name]
+    end
+    
   end
 
   def index
@@ -51,6 +61,6 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :postal_code, :payment_method, :total_payment, :address)
+    params.require(:order).permit(:name, :postal_code, :payment_method, :total_payment, :address ,:customer_id)
   end
 end
