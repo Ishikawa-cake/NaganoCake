@@ -8,7 +8,7 @@
             <th>会員ID</th>
             <th>氏名</th>
             <th>メールアドレス</th>
-            <!--<th>ステータス</th>-->
+            <th>ステータス</th>
           </tr>
         </thead>
         <tbody>
@@ -21,6 +21,11 @@
                 <% end %>
               </td>
               <td><%= customer.email %></td>
+              <% if customer.status == true %>
+                <td style="color: #00cc00; font-weight: bold;">有効</td>
+              <% else %>
+                <td style="color: #cccccc; font-weight: bold;">退会</td>
+              <% end %>
             </tr>
           <% end %>
         </tbody>
