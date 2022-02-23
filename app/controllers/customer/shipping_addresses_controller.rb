@@ -1,6 +1,6 @@
 class Customer::ShippingAddressesController < ApplicationController
-  
-  
+
+
   def index
     @shipping_address = current_customer.shipping_addresses.new
     @shipping_addresses = current_customer.shipping_addresses.all
@@ -9,7 +9,7 @@ class Customer::ShippingAddressesController < ApplicationController
   def create
     @shipping_address = current_customer.shipping_addresses.new(shipping_address_params)
     if @shipping_address.save
-      redirect_to customers_shipping_addresses_path
+      redirect_to shipping_addresses_path
     else
       @shipping_addresses = current_customer.shipping_addresses.all
       render 'index'
@@ -28,8 +28,9 @@ class Customer::ShippingAddressesController < ApplicationController
   end
 
   def destroy
+    @shipping_address = current_customer.shipping_addresses.find(params[:id])
     @shipping_address.destroy
-    redirect_to customers_shipping_addresses_path
+    redirect_to shipping_addresses_path
   end
 
   private
@@ -44,7 +45,7 @@ class Customer::ShippingAddressesController < ApplicationController
 
 
 end
-  
-  
-  
-  
+
+
+
+
