@@ -42,7 +42,7 @@
 
     <tr>
       <td>配送先</td>
-      <td><%= button_to "一覧を見る" %></td>
+      <td><%= link_to "一覧を見る" ,  shipping_addresses_path(@customer) %></td>
       <td>注文履歴</td>
       <td><%= link_to "注文履歴を見る", orders_path(@customer), class: "btn btn-success" %></td>
     </tr>
