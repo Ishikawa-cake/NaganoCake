@@ -23,6 +23,9 @@
              <div style="margin-left: 60px;">〒<%= "#{current_customer.postal_code} #{current_customer.address}" %></div>
              <div style="margin-left: 60px;"><%= current_customer.family_name %><%= current_customer.first_name %></div>
 
+            <div style="margin-left: 30px;"><%= f.radio_button :address_number, 2 %>
+            <%= f.label :address_number_2, "登録済み住所から選択" %></div>
+            <div style="margin-left: 60px;"><%= f.collection_select(:registered, @shipping_addresses.all, :id, :address, prompt: "選択してください") %></div>
 
             <div style="margin-left: 30px;"><%= f.radio_button :address_number, 3 %>
             <%= f.label :address_number_3, "新しいお届け先" %></div>

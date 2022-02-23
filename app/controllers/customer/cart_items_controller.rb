@@ -29,7 +29,7 @@ class Customer::CartItemsController < ApplicationController
 
   def update
     @cart_item = my_cart.find_by(id: params[:id])
-    
+
     if @cart_item.update(quantity: params[:quantity].to_i)
       flash[:notice] = 'カート内の内容が更新されました'
     else
@@ -46,9 +46,9 @@ class Customer::CartItemsController < ApplicationController
 def destroy
 
    #@cart_item = CartItem.find(params[:id])
-    
+
     @cart_item = my_cart.find_by(id: params[:id])
-    
+
     if @cart_item.destroy
       flash[:notice] = 'カート内の内容が削除されました'
     else
