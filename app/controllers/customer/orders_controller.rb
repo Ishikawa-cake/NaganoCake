@@ -9,9 +9,9 @@ class Customer::OrdersController < ApplicationController
 
     def new
     @cart = CartItem.all.where(customer: current_customer)
-    if @cart.empty?
+      if @cart.empty?
       redirect_to cart_items_path, notice: 'cart is empty.'
-    end
+      end
 
     @order = Order.new
     @shipping_addresses = ShippingAddress.where(customer: current_customer)
@@ -80,7 +80,7 @@ class Customer::OrdersController < ApplicationController
     @postage = 600
     @total_payment = 0
     @order_items.each do |order_items|
-    @total_payment += ((order_items.item.tax_out_price*order_items.quantity)*1.1).floor
+      @total_payment += ((order_items.item.tax_out_price*order_items.quantity)*1.1).floor
     end
   end
 
