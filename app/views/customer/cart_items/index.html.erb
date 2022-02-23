@@ -36,6 +36,7 @@
                   </div>
                 </td>
               <% end %>
+
               <td>
                 <%#= x.sum(:tax_out_price).to_s(:delimited) %>
                 <%#= x.quantity.to_s(:delimited)  %>
@@ -44,6 +45,7 @@
               <td>
                 <%= link_to '削除する', cart_item_path(x), method: :delete,  class: "btn btn-danger" %>
               </td>
+
             </tr>
             <% @total +=  x.quantity %>
           <% end %>
@@ -51,7 +53,7 @@
       </table>
       <div class="mx-5 my-5 d-flex justify-content-between">
         <div class="text-left">
-          <%= link_to "お買い物を続ける", items_path, class: "btn btn-lg btn-primary mx-5" %>
+          <%= link_to "お買い物を続ける", root_path, class: "btn btn-lg btn-primary mx-5" %>
         </div>
         <% if @cart_items.present? %>
           <div class="text-right mx-5">
