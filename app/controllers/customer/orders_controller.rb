@@ -32,8 +32,6 @@ class Customer::OrdersController < ApplicationController
     @customer = current_customer
     @total_payment = 0
 
-    binding.pry
-
     @cart_items.each do |cart_item|
     @total_payment += ((cart_item.item.tax_out_price * cart_item.quantity) * 1.1).floor
     end
@@ -57,7 +55,6 @@ class Customer::OrdersController < ApplicationController
       @order.address = params[:order][:address]
       @order.postal_code = params[:order][:postal_code]
     end
-    binding.pry
   end
 
   def index
