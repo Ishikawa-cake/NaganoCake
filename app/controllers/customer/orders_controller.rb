@@ -9,13 +9,13 @@ class Customer::OrdersController < ApplicationController
 
     def new
     @cart = CartItem.all.where(customer: current_customer)
-    if @cart.empty?
+      if @cart.empty?
       redirect_to cart_items_path, notice: 'cart is empty.'
-    end
+      end
 
     @order = Order.new
     @shipping_addresses = ShippingAddress.where(customer: current_customer)
-  end
+    end
 
 
 
