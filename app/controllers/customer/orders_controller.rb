@@ -69,7 +69,7 @@ class Customer::OrdersController < ApplicationController
     @postage = 600
     @total_payment = 0
     @order_items.each do |order_items|
-      @total_payment += ((order_items.item.subprice*order_items.quantity)*1.1).floor
+      @total_payment += ((order_items.item.tax_out_price*order_items.quantity)*1.1).floor
     end
   end
 
