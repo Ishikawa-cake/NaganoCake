@@ -10,8 +10,7 @@ class Customer::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.postage = 600
-    @order.save!
+    @order.save
 
     current_customer.cart_items.each do |cart_item|
       @order_items = OrderItem.new
@@ -69,7 +68,7 @@ class Customer::OrdersController < ApplicationController
     @postage = 600
     @total_payment = 0
     @order_items.each do |order_items|
-      @total_payment += ((order_items.item.tax_out_price*order_items.quantity)*1.1).floor
+    @total_payment += ((order_items.item.subprice*order_items.quantity)*1.1).floor
     end
   end
 
@@ -80,6 +79,6 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :postal_code, :payment_method, :total_payment, :address ,:customer_id)
+    params.require(:order).permit(:name, :postal_code, :payment_method, :total_payment, :address ,:customer_id,)
   end
 end
