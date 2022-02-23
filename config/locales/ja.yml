@@ -4,3 +4,9 @@ ja:
         payment_method:
           credit_card: "クレジットカード"
           transfer: "銀行振込"
+    devise:
+      sessions:
+        signed_in: 'ログインしました'
+        signed_out: "ログアウトしました"
+      registrations:
+        signed_up: "新規登録しました"

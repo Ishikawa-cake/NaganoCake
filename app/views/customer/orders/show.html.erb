@@ -1,67 +1,77 @@
-<div class="container">
-  <div class="row">
-    <div class="col">
-      <h5 class="offset-sm-1 " style="background-color: #eeeeee; display: inline-block; padding:0 20px; font-weight: bold; margin-top: 50px; margin-bottom: 50px;"> 注文情報確認 </h5>
-      <table><tr><td>
-        <div  style="margin: 10px; font-weight:bold; font-weight:bold;">注文情報</div>
-        <table border="1" style="margin: 10px;">
-          <tr>
-            <th style="padding: 15px 10px; background-color: #eeeeee;">注文日</th>
-            <td style="padding: 15px 10px;"><%= @order.created_at.strftime('%Y/%m/%d') %></td>
-          </tr>
-          <tr>
-            <!--<th style="padding: 15px 10px; background-color: #eeeeee;">配送先</th>-->
-            <td style="padding: 10px 10px;">
-              〒<%= @order.zip_code %><br>
-              <%= @order.address %><br>
-              <%= @order.name %>
-            </td>
-          </tr>
-          <tr>
-            <th style="padding: 15px 10px; background-color: #eeeeee;">支払い方法</th>
-            <td style="padding: 15px 10px;"><%= @order.payment_method %></td>
-          </tr>
-          <tr>
-            <th style="padding: 15px 10px; background-color: #eeeeee;">ステータス</th>
-            <td style="padding: 15px 10px;"><%= @order.shipping_status %></td>
-          </tr>
-        </table>
-        </td>
+<main>
+   <div class="container">
+     <div class="row pt-4 mb-4">
+       <h4>注文履歴詳細</h4>
+     </div>
 
-        <td>
-        <div style="margin-left: 50px; margin-bottom:10px; font-weight:bold;">請求情報</div>
-        <table border="1" style="margin-left: 50px;">
-          <tr >
-            <th style="padding: 15px 70px 15px 10px; background-color: #eeeeee;">商品合計</th>
-            <td style="padding: 15px 90px 15px 10px;"><%= (@order.total_payment - @order.delivery_fee ).to_s(:delimited) %></td>
+     <div class="row">
+       <div class="col-md-7">
+        <h5>注文情報</h5>
+        <table class="table table-bordered bg-light">
+          <tr>
+            <th class="background-color">注文日</th>
+            <td><%= @order.created_at.strftime('%Y/%m/%d') %></td>
           </tr>
           <tr>
-            <th style="padding: 15px 70px 15px 10px; background-color: #eeeeee;">配送料</th>
-            <td style="padding: 15px 90px 15px 10px;"><%= (@order.delivery_fee).to_s(:delimited) %></td>
+            <th class="background-color">配送先</th>
+            <td>
+              〒<%= @order.postal_code %></br>
+              <%= @order.address %>
+              <%= @order.name %>
+              </td>
           </tr>
           <tr>
-            <th style="padding: 15px 70px 15px 10px; background-color: #eeeeee;">ご請求金額</th>
-            <td style="padding: 15px 90px 15px 10px;"><%= (@order.total_payment).to_s(:delimited) %></td>
+            <th class="background-color">支払い方法</th>
+            <td><%= @order.payment_method_i18n %></td>
+          </tr>
+          <tr>
+            <th class="background-color">ステータス</th>
+            <td><%#= @order.order_status_i18n %></td>
           </tr>
         </table>
-      </td></tr></table>
-      <div style="margin: 10px; font-weight:bold;">注文内容</div>
-      <table border="1"  style="margin: 10px;">
-        <tr style="background-color: #eeeeee;">
-          <th style="padding: 15px 150px 15px 10px;">商品</th>
-          <th style="padding: 15px 40px 15px 10px;">単価(税込)</th>
-          <th style="padding: 15px 30px 15px 10px;">個数</th>
-          <th style="padding: 15px 70px 15px 10px;">小計</th>
-        </tr>
-        <% @order_items.each do |order_item| %>
+      </div>
+
+      <div class="col-md-5">
+        <h5>請求情報</h5>
+        <table class="table table-bordered bg-light">
           <tr>
-            <td style="padding: 15px 10px;"><%= order_item.item.name %></td>
-            <td style="padding: 15px 10px;"><%= (order_item.taxed_item_price_at_order).to_s(:delimited) %></td>
-            <td style="padding: 15px 10px;"><%= order_item.quantity %></td>
-            <td style="padding: 15px 10px;"><%= (order_item.taxed_item_price_at_order*order_item.quantity).to_s(:delimited) %></td>
+            <th class="background-color">商品合計</th>
+            <td><%= @total_payment %></td>
           </tr>
-        <% end %>
-      </table>
+          <tr>
+            <th class="background-color">配送料</th>
+            <td><%= @postage %></td>
+          </tr>
+          <tr>
+            <th class="background-color">ご請求額</th>
+            <td><%= @total_payment + @postage %></td>
+          </tr>
+        </table>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-10 mt-5">
+        <h5>注文内容</h5>
+        <table class="table table-bordered bg-light">
+            <th class="background-color">商品</th>
+            <th class="background-color">単価（税込）</th>
+            <th class="background-color">個数</th>
+            <th class="background-color">小計</th>
+          </tr>
+          <% @order.order_items.each do |order_items| %>
+          <tr>
+            <td><%= order_items.item.name %></td>
+            <td><%= (order_items.item.tax_out_price*1.1).to_i %></td>
+            <td><%= order_items.quantity %></td>
+            <td>
+              <% subtotal = ((order_items.item.tax_out_price*order_items.quantity)*1.1).to_i %>
+              <%= subtotal %>
+            </td>
+           <% end %>
+          </tr>
+        </table>
+      </div>
     </div>
   </div>
-</div>
+</main>
