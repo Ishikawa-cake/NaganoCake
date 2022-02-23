@@ -7,16 +7,17 @@
     <%= csp_meta_tag %>
     <%= stylesheet_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
-    
-            <% if flash[:notice] %>
-  　　　　　　　　<p><%= flash[:notice] %></p>
-　　　　　　<% end %>　
-    
+
+
   </head>
 
  <body class="d-flex flex-column vh-100">
-    
+
     <header class="shadow-sm">
+      <% if flash[:notice] %>
+  　　　　　　　　<p><%= flash[:notice] %></p>
+　　　<% end %>
+
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand p-3" href="/"><%= link_to 'ながのCake', '/', class: 'navbar-brand' %>
@@ -27,7 +28,7 @@
           </button>
           <div class="collapse navbar-collapse" id="navbarNavDropdown">
             <ul class="navbar-nav ml-auto">
-　　　　　　　　　
+
             <% if customer_signed_in? %>
               <li class="nav-item">
 
