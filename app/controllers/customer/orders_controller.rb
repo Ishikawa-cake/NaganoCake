@@ -10,7 +10,8 @@ class Customer::OrdersController < ApplicationController
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.save
+    @order.postage = 600
+    @order.save!
 
     current_customer.cart_items.each do |cart_item|
       @order_items = OrderItem.new
