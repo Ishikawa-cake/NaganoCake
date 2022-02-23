@@ -7,8 +7,7 @@
             <h5 style="font-weight: bold;">支払い方法</h5>
       
             <div style="margin-left: 30px;">
-            <%= f.radio_button :payment_method, Order.payment_methods.key(0) %>
-　　　　　　<%= f.label :payment_method, Order.payment_methods_i18n[:credit_card]%>
+            <%= f.radio_button :payment_method, Order.payment_methods.key(0) %><%= f.label :payment_method, Order.payment_methods_i18n[:credit_card]%>
             </div>
 
 
