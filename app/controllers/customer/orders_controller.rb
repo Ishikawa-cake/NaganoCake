@@ -1,17 +1,28 @@
 class Customer::OrdersController < ApplicationController
-  def new
-    if CartItem.exists?(customer_id: current_customer.id)
-      @order = Order.new
-    else
-      redirect_to items_path
+  # def new
+  #   if CartItem.exists?(customer_id: current_customer.id)
+  #     @order = Order.new
+  #   else
+  #     redirect_to items_path
+  #   end
+  # end
+
+    def new
+    @cart = CartItem.all.where(customer: current_customer)
+    if @cart.empty?
+      redirect_to cart_items_path, notice: 'cart is empty.'
     end
+
+    @order = Order.new
+    @shipping_addresses = ShippingAddress.where(customer: current_customer)
   end
+
+
 
   def create
     @order = Order.new(order_params)
     @order.customer_id = current_customer.id
-    @order.postage = 600
-    @order.save!
+    @order.save
 
     current_customer.cart_items.each do |cart_item|
       @order_items = OrderItem.new
@@ -46,10 +57,10 @@ class Customer::OrdersController < ApplicationController
       @order.postal_code = current_customer.postal_code
 
     elsif params[:order][:address_number] == "2"
-      @address = Address.find(params[:order][:customer_id])
+      @address = ShippingAddress.find_by(customer_id: current_customer.id)
       @order.name = @address.name
       @order.address = @address.address
-      @order.postal_code
+      @order.postal_code = @address.postal_code
     else params[:order][:select_address] = "3"
       @order.name = params[:order][:name]
       @order.address = params[:order][:address]
@@ -69,7 +80,7 @@ class Customer::OrdersController < ApplicationController
     @postage = 600
     @total_payment = 0
     @order_items.each do |order_items|
-      @total_payment += ((order_items.item.tax_out_price*order_items.quantity)*1.1).floor
+      @total_payment += ((order_items.item.subprice*order_items.quantity)*1.1).floor
     end
   end
 
@@ -80,6 +91,6 @@ class Customer::OrdersController < ApplicationController
   private
 
   def order_params
-    params.require(:order).permit(:name, :postal_code, :payment_method, :total_payment, :address ,:customer_id)
+    params.require(:order).permit(:name, :postal_code, :payment_method, :total_payment, :address ,:customer_id, :postage)
   end
 end
