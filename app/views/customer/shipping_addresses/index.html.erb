@@ -31,11 +31,11 @@
           </tr>
           <% @shipping_addresses.each do |shipping_address| %>
             <tr>
-              <td style="padding: 15px 10px;"><%= shipping_address.zip_code %></td>
+              <td style="padding: 15px 10px;"><%= shipping_address.postal_code %></td>
               <td style="padding: 15px 10px;"><%= shipping_address.address %></td>
               <td style="padding: 15px 10px;"><%= shipping_address.name %></td>
-              <td style="padding: 15px 10px;"><%= link_to "編集する", edit_customers_shipping_address_path(shipping_address), class: "btn btn-success btn-xs" %>
-              <%= link_to "削除する", customers_shipping_address_path(shipping_address), method: :delete, data:{confirm: "削除しますか？"}, class: "btn btn-danger btn-xs" %></td>
+              <td style="padding: 15px 10px;"><%= link_to "編集する", edit_shipping_address_path(shipping_address), class: "btn btn-success btn-xs" %>
+              <%= link_to "削除する", shipping_address_path(shipping_address), method: :delete, data:{confirm: "削除しますか？"}, class: "btn btn-danger btn-xs" %></td>
             </tr>
           <% end %>
         </table>
